@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="css/normalize.css"> -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .slide-container{
+            width: 920px;
+            /* height: 448px; */
+            margin:15vw auto;
+            box-shadow: 0 0 3px #AAAAAA;
+            border: 1px solid #fff;
+            font-size: 0;
+            position: relative;
+            transition: all 2s;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .slide-wrapper{
+            display: flex;
+            transition: all .5s;
+        }
+        .slide-menu::after{
+            position: absolute;
+            content:'';
+            border: 5px solid transparent;
+            border-top:10px solid white;
+            top:400px;
+            left:49%;
+        }
+       .slide-menu{
+           background: linear-gradient(to bottom, #f7f7f7 0%,#e0e0e0 52%,#e8e8e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+           margin:2px auto 0;
+           text-align: center;
+           box-shadow:0 -1px 3px #bbb;
+       }
+       .slide-menu>img{
+           padding: 5px 15px;
+           border-left: 1px solid #cfcfcf;
+       }
+       .slide-menu>img:last-child{
+           border-right: 1px solid #cfcfcf;
+       }
+       .slide-menu>img:not(:first-child){
+        padding: 9px 20px;
+
+       }
+       .slide-menu-active{
+        box-shadow: inset 0px 0px 10px 10px rgba(0,0,0,.1);
+       }
+       .slide-menu>img:hover{
+        background-color: #efefef;
+       }
+    </style>
+</head>
+<body>
+    <!--
+          npm init -y
+          parcel index.html
+    -->
+    <div class="slide-container">
+        <div class="slide-wrapper">
+            <div class="slide">
+            <img src="./images/side.jpg" alt="">
+
+            </div>
+            <div class="slide">
+        <img src="./images/side (1).jpg" alt="">
+
+            </div>
+            <div class="slide">
+            <img src="./images/side (2).jpg" alt="">
+
+            </div>
+            <div class="slide">
+            <img src="./images/side (3).jpg" alt="">
+
+            </div>
+        </div>
+        <div class="slide-menu">
+            <img src="./images/thumbnail.png" alt="">
+            <img src="./images/thumbnail (1).png" alt="">
+            <img src="./images/thumbnail (2).png" alt="">
+            <img src="./images/thumbnail (3).png" alt="">
+        </div>
+    </div>
+
+        <script src="js/main.js"></script>
+        <script>
+            let slideMenu = document.querySelector('.slide-menu') ;
+            let slideWarpper = document.querySelector('.slide-wrapper') ;
+            let preMenu
+
+            let imgButtons=slideMenu.children
+            slideMenu.addEventListener('click',(e)=>{
+                if(e.target===e.currentTarget) return;
+                if(preMenu){
+                    preMenu.classList.remove('slide-menu-active')
+
+                }
+
+                e.target.classList.add('slide-menu-active')
+                if(e.target===imgButtons[0]){
+                    slideWarpper.style.transform="translateX(0)"
+                }else if(e.target===imgButtons[1]){
+                    slideWarpper.style.transform="translateX(-920px)"
+
+                }else if(e.target===imgButtons[2]){
+                    slideWarpper.style.transform="translateX(-1840px)"
+
+                }else if(e.target===imgButtons[3]){
+                    slideWarpper.style.transform="translateX(-2760px)"
+
+                }
+
+                preMenu=e.target
+
+
+            })
+
+        </script>
+</body>
+</html>
